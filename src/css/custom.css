@@ -1,0 +1,35 @@
+/*===================
+      自定义样式
+===================*/
+.home {
+  background-image: url('https://cdn.pixabay.com/photo/2015/03/26/10/27/landscape-691374_960_720.jpg');
+  background-size: cover;
+  filter: brightness(.9);
+}
+
+.home-container {
+  position: relative;
+  width: 809px;
+  height: 500px;
+  border: 3px solid #ebedf0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transform: scale(1.4);
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  bottom: 80px;
+  border-radius: 25px;
+  border:none;
+}
+
+.time {
+  bottom: 80px;
+  right: 50px;
+}
+
+.title-an {
+  animation: fade_in 1s ease;
+}

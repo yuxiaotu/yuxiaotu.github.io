@@ -1,0 +1,38 @@
+/*==================
+      元素样式
+==================*/
+
+/* 标题 */
+.title-1 {
+  font-size: 2.5rem;
+}
+
+.title-2 {
+  font-size: 1rem;
+}
+
+.t-w {
+  color: #fff;
+}
+
+.t-g {
+  color: #c8c9cc
+}
+
+.t-b {
+  color: #2c2b2b
+}
+
+/* 内外边距 */
+.p-1 {
+  padding: 60px;
+}
+
+/* 内容元素定位 */
+.per {
+  position: relative;
+}
+
+.per .ab {
+  position: absolute;
+}

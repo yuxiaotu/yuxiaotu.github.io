@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>XuChenke</title>
+    <link rel="stylesheet" href="./css/fullscreen.css" />
+    <link rel="stylesheet" href="./css/theme.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/animation.css" />
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div id="main">
+        <!-- 第一页 -->
+        <div id="page1" class="page flex-center home">
+          <img
+            src="../src/assets/divide.svg"
+            width="809"
+            height="500"
+            style="position: absolute; transform: scale(1.4)"
+          />
+          
+          <div class="home-container">
+            <div class="flex-lr">
+              <div class="left p-1">
+                <p class="title-1 t-w title-an">标题</p>
+                <p class="title-2 t-g">辅助说明性文字</p>
+              </div>
+              <div class="right per">
+                <p class="ab title-2 t-g time">元素定位</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./js/fullscreen.js"></script>
+  <script>
+    function time() {
+      var d = new Date();
+      var year = d.getFullYear();
+      var month = d.getMonth();
+      var day = d.getDay();
+      var hour = d.getHours();
+      var minunt = d.getMinutes();
+      var second = d.getSeconds();
+      //document.getElementById('day').innerHTML = year;
+      document.getElementById("time").innerHTML = `${hour}:${minunt}:${second}`;
+    }
+
+    setInterval(time, 1000);
+  </script>
+</html>

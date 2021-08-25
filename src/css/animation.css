@@ -1,0 +1,13 @@
+/*==================
+      动画效果
+==================*/
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+  }
+}  
