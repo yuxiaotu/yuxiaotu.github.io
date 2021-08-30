@@ -3,54 +3,67 @@
   <head>
     <meta charset="utf-8" />
     <title>XuChenke</title>
+    <link rel="stylesheet" href="./css/pureFullPage.min.css" />
     <link rel="stylesheet" href="./css/fullscreen.css" />
     <link rel="stylesheet" href="./css/theme.css" />
     <link rel="stylesheet" href="./css/layout.css" />
     <link rel="stylesheet" href="./css/animation.css" />
     <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="https://unpkg.com/pattern.css" />
   </head>
 
   <body>
-    <div id="wrap">
-      <div id="main">
-        <!-- 第一页 -->
-        <div id="page1" class="page flex-center home">
-          <img
-            src="../src/assets/divide.svg"
-            width="809"
-            height="500"
-            style="position: absolute; transform: scale(1.4)"
-          />
-          
-          <div class="home-container">
-            <div class="flex-lr">
-              <div class="left p-1">
-                <p class="title-1 t-w title-an">标题</p>
-                <p class="title-2 t-g">辅助说明性文字</p>
-              </div>
-              <div class="right per">
-                <p class="ab title-2 t-g time">元素定位</p>
-              </div>
+
+    <div id="pureFullPage">
+      <!-- 第一页 -->
+      <div class="page flex-center first-page">
+        <!-- <img
+          src="../src/assets/divide.svg"
+          width="809"
+          height="500"
+          style="position: absolute; transform: scale(1.4)"
+        /> -->
+        <div class="container border p-lg pre">
+          <p class="text-lg white text-weight title-move">徐臣科</p>
+  
+          <p class="text-sm white text-width m-lg">
+            一份眷戀穿塵而過，一份牽掛在腕底翻滾，若，一份真情終抵不過光陰的洗滌，
+            且讓我把你的名字刻進生命，把這份愛凝于筆觸，縱使，
+            薄涼的煙雨沖刷走所有的記憶，你依然閃耀于我的繽紛的生命中，依然翊翊生輝于蒹葭蒼蒼的湄水間。
+          </p>
+
+          <button class="lower-right btn">开始</button>
+        </div>
+      </div>
+      <!-- 第二页 -->
+      <page class="page flex-center">
+        <!-- <img
+          src="../src/assets/divide.svg"
+          width="809"
+          height="500"
+          style="position: absolute; transform: scale(1.4)"
+        /> -->
+        <div class="container flex-lr">
+          <div class="left pre">
+            <p class="text-sm text-width title-move" style="position: absolute; bottom: 50px; left: 50px">
+              塵世漫漫，情路幾何？人生總是聚散匆匆，人海茫茫，遇到了就是緣。唯愿此生，
+              做一個行走在時光里的清雅女子，做一個安于文字間的書香女子，
+              優雅而清淡，純粹而本真，獨守自己的煙火，靜開在歲月的城池。他日，
+              與你牽手于時光小徑，譜一曲紅塵愛戀，譜一生情深意長。
+            </p>
+          </div>
+          <div class="right">
+            <div class="img-area pattern-dots-md gray-light tr">
+              <img style="transform:translate(15px, 15px);" src="https://cdn.pixabay.com/photo/2021/08/11/04/18/woman-6537397_960_720.jpg" width="100%" height="100%">
             </div>
           </div>
         </div>
-      </div>
+      </page>
     </div>
   </body>
-  <script src="./js/fullscreen.js"></script>
+  <script src="./js/pureFullPage.min.js"></script>
+  <!-- <script src="./js/fullscreen.js"></script> -->
   <script>
-    function time() {
-      var d = new Date();
-      var year = d.getFullYear();
-      var month = d.getMonth();
-      var day = d.getDay();
-      var hour = d.getHours();
-      var minunt = d.getMinutes();
-      var second = d.getSeconds();
-      //document.getElementById('day').innerHTML = year;
-      document.getElementById("time").innerHTML = `${hour}:${minunt}:${second}`;
-    }
-
-    setInterval(time, 1000);
+    new PureFullPage();
   </script>
 </html>
