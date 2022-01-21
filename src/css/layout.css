@@ -1,6 +1,6 @@
-.img-1 {
+.mode-1 {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -80%) scaleX(1.6);
+  width: 500px;
+  height: 500px;
+  transform: scale(1);
 }

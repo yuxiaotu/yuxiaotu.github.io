@@ -1,6 +1,24 @@
-.font-1 {
+.f1 {
   position: absolute;
-  bottom: 30%;
-  right: 32%;
-  transform: scale(4);
+  bottom: 120px;
+  right: 0;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.f2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+}
+
+.f3 {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+}
+
+.c1 {
+  color: #ccc;
 }
