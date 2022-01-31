@@ -13,7 +13,7 @@ body {
   left: 50%;
   width: 809px;
   height: 500px;
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1.4);
 }
 
 .refer-line {
@@ -22,7 +22,7 @@ body {
   left: 50%;
   width: 809px;
   height: 500px;
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1.4);
 }
 
 .bgcolor-1 {

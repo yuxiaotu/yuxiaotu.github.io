@@ -1,0 +1,62 @@
+.img-area {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 400px;
+  height: 330px;
+  transform: translateY(-50%);
+}
+
+.message-area {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 400px;
+  height: 330px;
+  transform: translateY(-50%);
+}
+
+.img-area-partition {
+  display: grid;
+  grid-template-areas: "a a a b b"
+                       "a a a c c";
+}
+
+.img-item-1 {
+  grid-area: a;
+  background-image: url(https://cdn.pixabay.com/photo/2021/12/25/13/08/real-estate-6893060_960_720.jpg);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 0% 0% 50% 0%);
+}
+
+.img-item-2 {
+  grid-area: b;
+  background-image: url(https://cdn.pixabay.com/photo/2018/07/16/04/43/flower-3541205_960_720.jpg);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 50% 0% 50% 0%);
+}
+
+.img-item-3 {
+  grid-area: c;
+  background: url(https://cdn.pixabay.com/photo/2019/11/02/20/50/camera-4597415_960_720.jpg);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 0% 50% 0% 50%);
+}
+
+.font-main {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.font-secondary {
+  transform: scale(0.8) translateX(-10%);
+}
+
+.font-color-1 {
+  color: goldenrod
+}
+
+.font-color-2 {
+  color: #ccc;
+}
+
