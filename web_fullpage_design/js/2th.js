@@ -19,7 +19,7 @@ window.addEventListener('mousewheel', e => {
       index++;
     } else {
       if (index === 0) {
-        index = 0;
+        index = 1;
         flag = true;
       } 
       index--;
