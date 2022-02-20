@@ -5,6 +5,10 @@
       href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link href="./css/default.css" rel="stylesheet" />
     <link href="./css/mode-1.css" rel="stylesheet" />
     <link href="./css/mode-2.css" rel="stylesheet" />
@@ -24,7 +28,7 @@
         <!-- 
           第一页 
         -->
-        <div class="swiper-slide m2 main-container m2-container-bg"> 
+        <div class="swiper-slide m2 main-container m2-container-bg">
           <!-- <img src="./assets/divide3.svg" class="refer-line" /> -->
 
           <div class="m2-frosted-glass-bg font-1 center item-1">
@@ -43,15 +47,20 @@
             The torch name 'Flying'
           </div>
 
-          <div class="m2-frosted-glass-bg font-1 center item-5">
-            一起向未来
-          </div>
+          <div class="m2-frosted-glass-bg font-1 center item-5">一起向未来</div>
 
           <!-- 文字内容 -->
-          <div class="message-area-1">
+          <div
+            class="message-area-1"
+            data-swiper-animation="animate__zoomIn"
+            data-duration="1s"
+            data-delay=".5s"
+          >
             Beijing 2022 Olympic Winter Games
           </div>
         </div>
+
+        <!------------------------------------------------------>
 
         <!-- 
           第二页 
@@ -69,10 +78,24 @@
             <!-- 文字内容 -->
             <div class="message-area">
               <p class="font-main">
-                <span class="font-color-1">Together</span> for
+                <span
+                  class="font-color-1"
+                  data-swiper-animation="animate__zoomIn"
+                  data-duration="1s"
+                  data-delay=".5s"
+                  >Together</span
+                >
+                for
               </p>
               <p class="font-main">
-                a Shared <span class="font-color-1">Future</span>
+                a Shared
+                <span
+                  class="font-color-1"
+                  data-swiper-animation="animate__zoomIn"
+                  data-duration="1s"
+                  data-delay=".5s"
+                  >Future</span
+                >
               </p>
 
               <p class="font-secondary font-color-2">
@@ -87,10 +110,20 @@
     </div>
   </body>
   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@cycjimmy/swiper-animation@4/dist/swiper-animation.umd.min.js"></script>
   <script>
+    const swiperAnimation = new SwiperAnimation();
     const swiper = new Swiper(".swiper", {
       direction: "vertical",
       mousewheel: true,
+      on: {
+        init: function () {
+          swiperAnimation.init(this).animate();
+        },
+        slideChange: function () {
+          swiperAnimation.init(this).animate();
+        },
+      },
     });
   </script>
 </html>
