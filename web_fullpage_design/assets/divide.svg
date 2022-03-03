@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <rect x="0" y="0" width="809" height="500" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/> 
+  <rect x="0" y="0" width="500" height="500" 
+  stroke-width="1" stroke="#969799" fill-opacity="0" />
+  <rect x="500" y="0" width="309" height="309" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/> 
+  <rect x="618" y="309" width="191" height="191" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/> 
+  <rect x="500" y="382" width="118" height="118" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/>
+
+  <circle cx="250" cy="250" r="250" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/>
+  <circle cx="654" cy="154" r="154" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/>
+  <circle cx="714" cy="404" r="95" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/>
+  <circle cx="559" cy="441" r="59" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"/>
+
+  <path d="M500,0 a500,500 0 0,0 -500,500 z" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"></path>
+
+  <path d="M809,309 a309,309 0 0,0 -309,-309 z" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"></path>
+
+  <path d="M809,309 a191, 191 0 0,1 -191,191 z" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"></path>
+
+  <path d="M809,309 a191, 191 0 0,1 -191,191 z" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"></path>
+
+  <path d="M618,500 a118, 118 0 0,1 -118,-118 z" 
+  stroke-width="1" stroke="#969799" fill-opacity="0"></path>
+</svg>

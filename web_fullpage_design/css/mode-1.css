@@ -1,0 +1,71 @@
+.m1 .img-area {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 400px;
+  height: 330px;
+  transform: translateY(-50%);
+}
+
+.m1 .message-area {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 400px;
+  height: 330px;
+  transform: translateY(-50%);
+}
+
+.m1 .img-area-partition {
+  display: grid;
+  grid-template-areas: "a a a b b"
+                       "a a a c c";
+}
+
+.m1 .img-item-1 {
+  grid-area: a;
+  background-image: url(https://img1.baidu.com/it/u=4051021414,2144112973&fm=253&fmt=auto&app=138&f=JPEG?w=550&h=309);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 0% 0% 50% 0%);
+}
+
+.m1 .img-item-2 {
+  grid-area: b;
+  background-image: url(https://img2.baidu.com/it/u=459327434,725879318&fm=253&fmt=auto&app=138&f=JPEG?w=320&h=180);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 50% 0% 50% 0%);
+}
+
+.m1 .img-item-3 {
+  grid-area: c;
+  background: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.thaihot.com.cn%2Fuploadimg%2Fimage%2F20210804%2F20210804105010_19887.jpg&refer=http%3A%2F%2Fimg.thaihot.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647068642&t=846d55f8fa21291ae882e252f32a7550);
+  background-size: cover;
+  clip-path: inset(0% 0% 0% 0% round 0% 50% 0% 50%);
+}
+
+.m1 .font-main {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.m1 .font-secondary {
+  transform: scale(0.8) translateX(-10%);
+}
+
+.m1 .font-color-1 {
+  color: skyblue
+}
+
+.m1 .font-color-2 {
+  color: dodgerblue;
+}
+
+@keyframes f {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

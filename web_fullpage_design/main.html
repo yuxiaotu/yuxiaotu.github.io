@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link href="./css/default.css" rel="stylesheet" />
+    <link href="./css/mode-1.css" rel="stylesheet" />
+    <link href="./css/mode-2.css" rel="stylesheet" />
+    <style>
+      .swiper {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- 
+          第一页 
+        -->
+        <div class="swiper-slide m2 main-container m2-container-bg">
+          <!-- <img src="./assets/divide3.svg" class="refer-line" /> -->
+
+          <div class="m2-frosted-glass-bg font-1 center item-1">
+            The mascot is Bing Dwen Dwen
+          </div>
+
+          <div class="m2-frosted-glass-bg font-1 center item-2">
+            The emblem inspired by '冬'
+          </div>
+
+          <div class="m2-frosted-glass-bg font-1 center item-3">
+            Together for a Shared Future
+          </div>
+
+          <div class="m2-frosted-glass-bg font-1 center item-4">
+            The torch name 'Flying'
+          </div>
+
+          <div class="m2-frosted-glass-bg font-1 center item-5">一起向未来</div>
+
+          <!-- 文字内容 -->
+          <div
+            class="message-area-1"
+            data-swiper-animation="animate__zoomIn"
+            data-duration="1s"
+            data-delay=".5s"
+          >
+            Beijing 2022 Olympic Winter Games
+          </div>
+        </div>
+
+        <!------------------------------------------------------>
+
+        <!-- 
+          第二页 
+        -->
+        <div class="swiper-slide m1 main-container">
+          <!-- <img src="./assets/divide2.svg" class="refer-line" /> -->
+          <div class="content-container">
+            <!-- 图片内容 -->
+            <div class="img-area img-area-partition">
+              <div class="img-item-1 bgcolor-2"></div>
+              <div class="img-item-2 bgcolor-3"></div>
+              <div class="img-item-3 bgcolor-1"></div>
+            </div>
+
+            <!-- 文字内容 -->
+            <div class="message-area">
+              <p class="font-main">
+                <span
+                  class="font-color-1"
+                  data-swiper-animation="animate__zoomIn"
+                  data-duration="1s"
+                  data-delay=".5s"
+                  >Together</span
+                >
+                for
+              </p>
+              <p class="font-main">
+                a Shared
+                <span
+                  class="font-color-1"
+                  data-swiper-animation="animate__zoomIn"
+                  data-duration="1s"
+                  data-delay=".5s"
+                  >Future</span
+                >
+              </p>
+
+              <p class="font-secondary font-color-2">
+                Beijing 2022 sent out warm invitations worldwide with the
+                unveiling of "Together for a Shared Future" as its official
+                motto
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@cycjimmy/swiper-animation@4/dist/swiper-animation.umd.min.js"></script>
+  <script>
+    const swiperAnimation = new SwiperAnimation();
+    const swiper = new Swiper(".swiper", {
+      direction: "vertical",
+      mousewheel: true,
+      on: {
+        init: function () {
+          swiperAnimation.init(this).animate();
+        },
+        slideChange: function () {
+          swiperAnimation.init(this).animate();
+        },
+      },
+    });
+  </script>
+</html>
