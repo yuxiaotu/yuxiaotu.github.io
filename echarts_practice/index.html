@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="./style/default.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="app" class="main-box">
+      <!-- 显示区 -->
+      <div class="display-chart">
+        <div v-show="type" ref="chartBox" class="chart"></div>
+        <div v-show="!type">
+          <p class="f1">Welcom Here</p>
+          <div class="welcome-content">
+            <div class="left f2">导入</div>
+            <div class="right f2" @click="testData">案例</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 控制器 -->
+      <div class="workspace">
+        <h2>图表类型</h2>
+        <div class="btn-area">
+          <button
+            v-for="item in chartTypes"
+            :key="item.id"
+            class="btn"
+            @click="switchChartType(item.type)"
+          >
+            {{ item.name }}
+          </button>
+        </div>
+
+        <h2>色彩</h2>
+        <div class="color-area">
+          <div
+            class="color-block"
+            v-for="item in colors"
+            :key="item.name"
+            :style="{ background: '#' + item.color}"
+            @click="toggleChartThemeColor( '#' +item.color)"
+          ></div>
+        </div>
+
+        <h2>标题</h2>
+        <div>
+          <input type="text" class="title-input" v-model="chartTitle" />
+          <button class="title-btn" @click="updateTitle">确定</button>
+        </div>
+
+        <!-- <h2>数据</h2>
+        <div>
+          <button class="inputBtn" @click="toggleTableBox">导入</button>
+          <button class="inputBtn">编辑</button>
+        </div> -->
+
+        <div>
+          <button class="download-btn" @click="toImg">输出 PNG</button>
+        </div>
+      </div>
+
+      <!-- 蒙版 -->
+      <!-- <div class="mark" ref="mark"></div> -->
+
+      <!-- 表格 -->
+      <!-- <div class="table-box" ref="tableBox">
+        <button 
+          class="inputBtn"
+          @click="cancelTable"
+        >取消</button>
+        <button
+          class="inputBtn"
+        >确定</button>
+      </div> -->
+    </div>
+  </body>
+
+  <script src="./js/vue.global.js"></script>
+  <script src="./js/echarts.js"></script>
+  <script src="./js/html2canvas.js"></script>
+  <script src="./js/chartType.js"></script>
+  <script src="./js/color.js"></script>
+  <script src="./js/baseBarLine.js"></script>
+  <script src="./js/FileSaver.min.js"></script>
+  <script src="./js/basePie.js"></script>
+  <script>
+    const { createApp, ref, nextTick, onMounted } = Vue;
+    const chartTypeList = chartTypes;
+    const colorList = colors;
+
+    composition = {
+      setup() {
+        let chartBox = ref(null); // 图表内容
+        let tableBox = ref(null); // 数据表格内容
+        let mark = ref(null); // 弹窗模板
+        let chartTitle = ref(null); // 图表标题
+
+        let chartTypes = ref(chartTypeList); // 图标类型
+        let colors = ref(colorList); // 主题色彩
+        let chartInit = ref(null);
+        let type = ref(null);
+        let xAxisData = ref(null);
+        let yAxisData = ref(null);
+        let chartData = ref(null);
+
+        onMounted(() => {
+          chartInit = echarts.init(chartBox.value);
+        })
+
+        const toggleTableBox = function () {
+          tableBox.value.style.display = "block";
+          mark.value.style.display = "block";
+        };
+
+        const cancelTable = function () {
+          tableBox.value.style.display = "none";
+          mark.value.style.display = "none";
+        };
+
+        // 绘制图表
+        const createChart = function (chartOptions) {
+          nextTick(() => {
+            chartInit.setOption(chartOptions);
+          });
+        };
+
+        // 切换图表类型
+        const switchChartType = function (type) {
+          if (type == 'pie') {
+            createChart(basePieOptions(chartData.value, xAxisData.value))
+          } else {
+            createChart(baseBarLineOptions(type, xAxisData.value, chartData.value));
+          }
+        };
+
+
+        // 案例数据
+        const testData = function () {
+          type.value = 'bar';
+          xAxisData.value = ['A', 'B', 'C', 'D', 'E'];
+          chartData.value = [10, 20, 30, 40, 50];
+          createChart(baseBarLineOptions(type.value, xAxisData.value, chartData.value));
+          chartInit.setOption({color: '#2b73af'})
+        };
+
+        // 改变图表的主题颜色
+        const toggleChartThemeColor = function(myColor) {
+          chartInit.setOption({color: myColor})
+        }
+
+        // 导出图片
+        const toImg = function() {
+          html2canvas(chartBox.value).then(canvas => {
+            canvas.toBlob(function(blob) {
+              saveAs(blob, "chart.png");
+            })
+          })
+        }
+
+        // 更新标题
+        const updateTitle = function() {
+          chartInit.setOption({title: {text: chartTitle.value}});
+        }
+
+        return {
+          chartBox,
+          tableBox,
+          mark,
+          chartTypes,
+          colors,
+          type,
+          chartInit,
+          chartTitle,
+          switchChartType,
+          toggleTableBox,
+          cancelTable,
+          testData,
+          toggleChartThemeColor,
+          toImg,
+          updateTitle
+        };
+      },
+    };
+
+    createApp(composition).mount("#app");
+  </script>
+</html>
