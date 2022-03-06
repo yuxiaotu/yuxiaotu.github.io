@@ -2,6 +2,7 @@
 <html>
   <head>
     <link href="./style/default.css" rel="stylesheet" />
+    <link href="./style/table.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -10,7 +11,7 @@
       <div class="display-chart">
         <div v-show="type" ref="chartBox" class="chart"></div>
         <div v-show="!type">
-          <p class="f1">Welcom Here</p>
+          <p class="f1">Welcome Here</p>
           <div class="welcome-content">
             <div class="left f2">导入</div>
             <div class="right f2" @click="testData">案例</div>
@@ -49,70 +50,87 @@
           <button class="title-btn" @click="updateTitle">确定</button>
         </div>
 
-        <!-- <h2>数据</h2>
-        <div>
-          <button class="inputBtn" @click="toggleTableBox">导入</button>
-          <button class="inputBtn">编辑</button>
-        </div> -->
+        <h2>数据</h2>
+        <div class="data-area">
+          <button class="inputBtn" disabled>导入</button>
+          <button class="inputBtn" @click="toggleTableBox">编辑</button>
+        </div>
 
         <div>
-          <button class="download-btn" @click="toImg">输出 PNG</button>
+          <button class="download-btn" @click="toImg">下载 PNG</button>
         </div>
       </div>
 
       <!-- 蒙版 -->
-      <!-- <div class="mark" ref="mark"></div> -->
+      <div class="mark" ref="mark"></div>
 
       <!-- 表格 -->
-      <!-- <div class="table-box" ref="tableBox">
+      <div class="table-box" ref="tableBox">
         <button 
-          class="inputBtn"
-          @click="cancelTable"
+          class="btn" 
+          @click="cancelTable" 
         >取消</button>
-        <button
-          class="inputBtn"
-        >确定</button>
-      </div> -->
+        <button 
+          class="btn" 
+          @click="getMyTableData"
+          style="background-color: #2b73af; color: #fff">确定</button>
+        <!-- <input type="text" class="rows-columns-input"/> 行 × 
+        <input type="text" class="rows-columns-input" /> 列 -->
+
+        <div class="table-content">
+          <my-table
+            :data="tableData"
+            ref="myTableDom"
+          />
+        </div>
+      </div>
     </div>
   </body>
 
   <script src="./js/vue.global.js"></script>
   <script src="./js/echarts.js"></script>
   <script src="./js/html2canvas.js"></script>
+  <script src="./js/FileSaver.min.js"></script>
+  <script src="./js/basePie.js"></script>
   <script src="./js/chartType.js"></script>
   <script src="./js/color.js"></script>
   <script src="./js/baseBarLine.js"></script>
-  <script src="./js/FileSaver.min.js"></script>
-  <script src="./js/basePie.js"></script>
+  <script src="./component/table.js"></script>
+  <script src="./util/xAxis.js"></script>
+  <script src="./util/yAxis.js"></script>
+  <script src="./util/series.js"></script>
   <script>
-    const { createApp, ref, nextTick, onMounted } = Vue;
-    const chartTypeList = chartTypes;
-    const colorList = colors;
+    const { createApp, ref, nextTick, onMounted, reactive } = Vue;
+    const chartTypeList = chartTypes; // 图表类型列表
+    const colorList = colors; // 颜色列表
 
     composition = {
       setup() {
-        let chartBox = ref(null); // 图表内容
-        let tableBox = ref(null); // 数据表格内容
-        let mark = ref(null); // 弹窗模板
+        let chartBox = ref(null); // Echarts 图表显示节点
+        let tableBox = ref(null); // 表格数据节点
+        let mark = ref(null); // 弹窗覆盖物节点
+        let myTableDom = ref(null); // 表格数据内容节点
+
         let chartTitle = ref(null); // 图表标题
-
         let chartTypes = ref(chartTypeList); // 图标类型
-        let colors = ref(colorList); // 主题色彩
-        let chartInit = ref(null);
-        let type = ref(null);
-        let xAxisData = ref(null);
-        let yAxisData = ref(null);
-        let chartData = ref(null);
+        let colors = ref(colorList); // 主题色
+        let chartInit = ref(null); //  Echarts 初始化变量
+        let type = ref(null); // 图表类型
+        let xAxisData = ref(null); // x轴相关数据
+        let yAxisData = ref(null); // y轴相关数据
+        let chartData = ref(null); // 图表数据
+        let tableData = ref([
+          ["商品", "花生", "瓜子", "巧克力", "矿泉水"],
+          ["销量", 20, 10, 15, 40],
+        ]);
 
-        onMounted(() => {
-          chartInit = echarts.init(chartBox.value);
-        })
-
+        // 弹出表格弹窗
         const toggleTableBox = function () {
           tableBox.value.style.display = "block";
           mark.value.style.display = "block";
         };
 
+        // 关闭表格弹窗
         const cancelTable = function () {
           tableBox.value.style.display = "none";
           mark.value.style.display = "none";
@@ -127,41 +145,85 @@
 
         // 切换图表类型
         const switchChartType = function (type) {
-          if (type == 'pie') {
-            createChart(basePieOptions(chartData.value, xAxisData.value))
+          if (type == "pie") {
+            createChart(basePieOptions(chartData.value, xAxisData.value));
           } else {
-            createChart(baseBarLineOptions(type, xAxisData.value, chartData.value));
+            createChart(
+              baseBarLineOptions(type, xAxisData.value, chartData.value)
+            );
           }
         };
 
-
         // 案例数据
         const testData = function () {
-          type.value = 'bar';
-          xAxisData.value = ['A', 'B', 'C', 'D', 'E'];
-          chartData.value = [10, 20, 30, 40, 50];
-          createChart(baseBarLineOptions(type.value, xAxisData.value, chartData.value));
-          chartInit.setOption({color: '#2b73af'})
+          type.value = "bar";
+          xAxisData.value = tableData.value[0].slice(1);
+          chartData.value = tableData.value[1].slice(1);
+
+          let options = {
+            xAxis: xAxis("category", xAxisData.value),
+            yAxis: yAxis("value", []),
+            series: series(type.value, chartData.value),
+          };
+          createChart(options);
+          chartInit.setOption({ color: "#2b73af" });
         };
 
-        // 改变图表的主题颜色
-        const toggleChartThemeColor = function(myColor) {
-          chartInit.setOption({color: myColor})
-        }
+        // 切换图表的主题色cd
+        const toggleChartThemeColor = function (myColor) {
+          chartInit.setOption({ color: myColor });
+        };
 
-        // 导出图片
-        const toImg = function() {
-          html2canvas(chartBox.value).then(canvas => {
-            canvas.toBlob(function(blob) {
+        // 将图表导出为图片
+        const toImg = function () {
+          html2canvas(chartBox.value).then((canvas) => {
+            canvas.toBlob(function (blob) {
               saveAs(blob, "chart.png");
-            })
-          })
-        }
+            });
+          });
+        };
 
         // 更新标题
-        const updateTitle = function() {
-          chartInit.setOption({title: {text: chartTitle.value}});
-        }
+        const updateTitle = function () {
+          chartInit.setOption({ title: { text: chartTitle.value } });
+        };
+
+        // 从表格中读取数据
+        const getMyTableData = function () {
+          let nodesText = myTableDom.value.$el.innerText;
+          let rows = nodesText.split("\n");
+          let newData = [];
+
+          for (let i of rows) {
+            let res = i.split("\t");
+            if (!res.every((item) => item == "")) {
+              newData.push(res);
+            }
+          }
+
+          tableData.value = newData;
+          cancelTable();
+          xAxisData.value = newData[0].slice(1);
+          chartData.value = newData[1].slice(1);
+          let temp = [];
+
+          for (i of newData.slice(1)) {
+            temp.push(i.slice(1));
+          }
+
+          let options = {
+            xAxis: xAxis("category", xAxisData.value),
+            yAxis: yAxis("value", []),
+            series: series(type.value, temp),
+          };
+
+          createChart(options);
+          chartInit.setOption({ color: "#2b73af" });
+        };
+
+        onMounted(() => {
+          chartInit = echarts.init(chartBox.value);
+        });
 
         return {
           chartBox,
@@ -172,17 +234,20 @@
           type,
           chartInit,
           chartTitle,
+          tableData,
+          myTableDom,
           switchChartType,
           toggleTableBox,
           cancelTable,
           testData,
           toggleChartThemeColor,
           toImg,
-          updateTitle
+          updateTitle,
+          getMyTableData,
         };
       },
     };
 
-    createApp(composition).mount("#app");
+    createApp(composition).component("MyTable", MyTable).mount("#app");
   </script>
 </html>

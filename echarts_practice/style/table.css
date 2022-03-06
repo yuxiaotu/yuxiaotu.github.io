@@ -1,0 +1,12 @@
+.table-space {
+  width: 100%;
+  border-color: #f2f3f5;
+}
+
+.table-space tr:nth-child(2n) {
+  background-color: #f2f3f5;
+}
+
+.table-space td {
+  outline: none;
+}

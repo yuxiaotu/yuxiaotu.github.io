@@ -34,10 +34,10 @@ body {
 }
 
 .btn {
-  height: 30px;
+  height: 40px;
   border: none;
-  border-radius: 5  px;
-  background-color: skyblue;
+  font-weight: 600;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -51,23 +51,44 @@ body {
   cursor: pointer;
 }
 
+.data-area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
 .inputBtn {
-  width: 100px;
   height: 30px;
   border: none;
   border-radius: 5px;
+  font-weight: 600;
 }
 
 .table-box {
   display: none;
   position: absolute;
-  width: 50vw;
-  height: 500px;
   left: 50%;
   top: 50%;
+  width: 50vw;
+  height: 500px;
+  padding: 20px;
+  border-radius: 8px;
   transform: translate(-50%, -50%);
   z-index: 2;
   background-color: #fff;
+  box-sizing: border-box;
+}
+
+.table-box .btn {
+  width: 100px;
+  height: 30px;
+  margin: 0 10px 0 0;
+  font-weight: 600;
+}
+
+.table-box .table-content {
+  height: 430px;
+  margin-top: 10px;
 }
 
 .mark {
@@ -123,7 +144,7 @@ body {
   border-radius: 8px;
   color: #fff;
   font-size: 20px;
-  background-color: skyblue;
+  background-color: #2b73af;
   cursor: pointer;
 }
 
@@ -137,7 +158,19 @@ body {
 .title-btn {
   height: 30px;
   width: 60px;
+  font-weight: 600;
   margin-left: 10px;
   border: none;
   border-radius: 5px;
+}
+
+.rows-columns-input {
+  width: 50px;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f2f3f5;
 }
